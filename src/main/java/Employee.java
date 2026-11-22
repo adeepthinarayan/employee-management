@@ -17,7 +17,7 @@ public class Employee {
     }
 
     public double calculateAnnualSalary() {
-        return monthlySalary * 12;
+        return monthlySalary * 10;
     }
 
     public boolean isValidEmployee() {
