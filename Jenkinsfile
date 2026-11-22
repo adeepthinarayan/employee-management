@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -5,8 +6,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Downloading employee application from GitHub'
-                git 'YOUR_GITHUB_REPOSITORY_URL'
+                echo 'Source code checked out from GitHub'
+                sh 'ls -la'
             }
         }
 
@@ -30,16 +31,20 @@ pipeline {
                 sh 'mvn package -DskipTests'
             }
         }
-
     }
 
     post {
         success {
             echo 'Employee Application CI Pipeline Successful!'
+            echo 'Build, Test and Package stages completed successfully.'
         }
 
         failure {
-            echo 'Pipeline Failed! Check Console Output.'
+            echo 'Pipeline Failed! Check Console Output for errors.'
+        }
+
+        always {
+            echo 'CI Pipeline execution completed.'
         }
     }
 }
